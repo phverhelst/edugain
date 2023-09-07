@@ -199,14 +199,14 @@ Example idpuser is used for searching a user John Doe with johndoe as sAMAccount
     
 #### Configuring and testing the ldap SSL and TLS connexion
 
-Assume the prerequisite of a PKI infrastructure and deployment of certificates for the domain controllers and clients.
+Assume the prerequisite of a PKI infrastructure and deployment of certificates for the domain controllers and clients.  
 Testing on the domain controller with ldp.exe the connexion in ssl (check SSL and choose port 636)  
-Place Root and intermediate certificates of the Active Directory infrastructure in /usr/local/share/ca-certificates and update :
+Place Root and intermediate certificates of the Active Directory infrastructure in /usr/local/share/ca-certificates and update :  
 
     sudo update-ca-certificates
 
 
-From the idp retrieving of the certificates from the domain controller can be achieved with openssl s_client :
+From the idp retrieving of the certificates from the domain controller can be achieved with openssl s_client:  
 
     sudo su -
     openssl s_client -showcerts -verify 5 -connect dc.exemple.org:636  < /dev/null | awk '/BEGIN/,/END/{ if(/BEGIN/)    {a++}; out="dc-cert"a".pem"; print >out}'
